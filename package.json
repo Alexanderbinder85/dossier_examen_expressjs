@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Alexanderbinder85/dossier_examen_expressjs/issues"
   },
-  "homepage": "https://github.com/Alexanderbinder85/dossier_examen_expressjs#readme"
+  "homepage": "https://github.com/Alexanderbinder85/dossier_examen_expressjs#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
 }
