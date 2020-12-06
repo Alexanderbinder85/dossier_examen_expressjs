@@ -7,34 +7,19 @@ const ejs = require('ejs');
 app.engine('.html', ejs.__express);
 app.set('view engine', 'ejs');
 
-// function errorHandler (err,req, res, next) {
-//   console.log("I am a Midelware");
-//   const errOjct = new Error("I am a error!");
-
-//   next(err);
-// //  if(err){
-// //    res.send('<h1> You got bad ass error</h1>');
-// //  }
-//   // res.status(500)
-//   // res.render('error', { error: err })
-// }
-
-// app.use(errorHandler);
-
-function catchError(err,req, res, next) {
-  if(err){
-  res.send('h1> You got bad ass error</h1>')
+function errorHandle(req, res, next) {
+  //  Page not found
+  if(res.status(404)){
+    res.type('html').send('<h1 style="color: blue;">Hey Alex! An Error 404 page not found </h1>');
   }
+  //  successfully added data 
+  if(res.status(201)){
+    res.type('html').send('<h1 style="color: green;">You add a new image </h1>');
+  }
+  
 }
 
-app.use(catchError);
-
-
-
-
-
 app.get("/home",(req, res) => {
-
   res.render('home',{title: "Home"});
 });
 
@@ -68,20 +53,8 @@ app.get('/contact', (req, res) => {
   res.render('contact',{title: "Contact"});
 })
 
+app.use(errorHandle);
 
-
-// function errorHandler (req, res, next) {
-//   console.log("I am a Midelware");
-// //  if(err){
-// //    res.send('<h1> You got bad ass error</h1>');
-// //  }
-//   // res.status(500)
-//   // res.render('error', { error: err })
-// }
-
-// app.use(errorHandler);
-
-// app.use(catchError);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
